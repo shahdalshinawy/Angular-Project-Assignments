@@ -1,0 +1,40 @@
+<div class="container">
+    <form novalidate #registerForm="ngForm" (ngSubmit)="submitData()"> 
+        
+        <div class="form-group" >
+            <label> Username</label>
+            <input class="form-control"  [class.is-invalid]="name.invalid&&name.touched" #name="ngModel" [(ngModel)]="userModel.username" name="usernametxt" ngModel required type="text">
+            <small class="text-danger" *ngIf="name.invalid&&name.touched"> Username is required</small>
+        </div>
+        <div class="form-group" >
+            <label> Email</label>
+            <input class="form-control" [class.is-invalid]="email.invalid&&email.touched" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" [(ngModel)]="userModel.email" name="emailtxt" ngModel required type="email">
+            <small class="text-danger" *ngIf="email.invalid&&email.touched"> Email is wrong </small>
+
+        </div>
+        <div class="form-group" >
+            <label> Password</label>
+            <input class="form-control" [class.is-invalid]="password.invalid&&password.touched" #password="ngModel" name="passtxt" [(ngModel)]="userModel.password" ngModel required type="password">
+            <small class="text-danger" *ngIf="password.invalid&&password.touched"> password is required</small>
+
+        </div>
+        <div class="form-group" >
+            <label> confirm password</label>
+            <input class="form-control" [class.is-invalid]="confirmPassword.invalid&&confirmPassword.touched" #confirmPassword="ngModel" name="passConfirmtxt" ngModel required type="password">
+            <small class="text-danger" *ngIf="confirmPassword.value!=password.value"> Password must match</small>
+
+        </div>
+        <div class="form-group" >
+            <label> Where have you heard of us?</label>
+            <br>
+            <select required #website="ngModel"  [class.is-invalid]="website.invalid&&website.touched" name="websitetxt" ngModel [(ngModel)]="userModel.website">
+                <option *ngFor="let website of websites">
+                    {{website}}
+                </option>
+            </select>
+            <small class="text-danger" *ngIf="website.invalid&&website.touched">choose please</small>
+
+        </div>
+        <input type="submit" [style.background-color]="registerForm.invalid ? 'red' : 'green'"  value="Register" class="btn btn-info" >
+    </form>
+</div>

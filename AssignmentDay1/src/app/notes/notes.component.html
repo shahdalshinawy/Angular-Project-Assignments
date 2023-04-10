@@ -1,0 +1,35 @@
+<div class="container">
+    {{notesForm.value|json}}
+    <form [formGroup]="notesForm" (ngSubmit)="submitNotesForm()" >
+     <div class="form-group" >
+        <label> Name</label>
+        <input  [class.is-invalid]="notesForm.get('Name')?.invalid && notesForm.get('Name')?.touched" formControlName="Name"   class="form-control"  type="text">
+        <small class="text-danger" *ngIf="notesForm.get('Name')?.invalid && notesForm.get('Name')?.touched"> username is wrong </small>
+    </div>
+        <div class="form-group" >
+            <label> Products</label>
+            <select  formControlName="products" class="form-control">
+                <option *ngFor="let item of productItems">{{item.Name}}</option>
+            </select>
+           
+        </div>
+        <div class="form-group">
+            Discount <input type="checkbox" class=" ml-1 form-check-input" (click)="setDiscount()" formControlName="discount">
+            <input type="number" formControlName="optionalInput" class="form-control" 
+            [class.is-invalid]="optionalInput?.touched &&optionalInput?.invalid">
+        </div>
+        <small class="text-danger" *ngIf="optionalInput?.touched &&optionalInput?.invalid">Discount is required</small> 
+        <input type="text" formControlName="comment" class="form-control" placeholder="write Comments Here!!">
+        <br>
+        <input type="submit" value="comment" (click)="AddComment()" class="btn btn-info" >
+
+        <div formArrayName="comments"
+             *ngFor="let cm of comments.controls; let i=index">
+             <label> comment # {{i+1}}</label>
+             <input type="text" class="form-control" [formControlName]="i">
+             <input type="submit" value="comment" (click)="AddComment()" class="btn btn-info" >
+
+        </div>
+    </form><br>
+    <input type="submit" value="submit" class="btn btn-primary">
+</div>

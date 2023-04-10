@@ -1,0 +1,80 @@
+<h1>storename:{{storeName}}</h1>
+<img src={{storeLogo}} style="width: 50px; border-radius: 20px;">
+<div *ngIf="disBool; then hidee">
+   
+</div>
+<ng-template #hidee>
+    <h3>We Offer you {{discount}}</h3>
+</ng-template>
+<br>
+<br>
+<select>
+    <option *ngFor="let item of categoryList">
+        {{item.Name}}
+    </option>
+</select>
+
+<div *ngIf="toDisplay">
+    <table  class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+        <tr >
+            <th >ID</th>
+            <th >Name</th>
+
+            <th >Quantity</th>
+            <th >Price</th>
+            <th >Img</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of productList">
+            <td>
+                {{item.ID}}
+            </td>
+            <td>
+                {{item.Name}}
+            </td>
+            <td>
+                {{item.Quanitity}}
+            </td>
+            <td>
+                {{item.Price}}
+            </td>
+            <td>
+                <img src={{item.img}} style="width: 20px;">
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+<hr>
+<br>
+<br>
+
+<!-- <input type="text" [(ngModel)]="clientName"> {{clientName}} -->
+<br>
+<button (click)="hideTable()">Buy</button>
+<h3 *ngIf="IsPurchased">Thanks For purchasing from our store {{clientName}}</h3>
+
+<br>
+<br>
+<br>
+<h1>
+    <!-- {{storeName |uppercase}} -->
+</h1>
+<h4>
+    <!-- {{discount |percent}} -->
+</h4>
+
+<div *ngFor="let prdId of productItems" (click)="GetProductById(prdId)">
+    {{prdId.ID}} ) {{prdId.Name}}
+</div>
+
+<button (click)="renderValues()">Render Items</button>
+
+
+<div *ngFor="let prdId of renderedList">
+    {{prdId.ID}} ) {{prdId.Name}}
+</div>
+
+

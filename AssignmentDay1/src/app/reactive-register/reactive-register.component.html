@@ -1,0 +1,29 @@
+<div class="container">
+    <form [formGroup]="reactiveRegisterForm" >
+     <div class="form-group" >
+        <label> Username</label>
+        <input  [class.is-invalid]="reactiveRegisterForm.get('username')?.invalid && reactiveRegisterForm.get('username')?.touched" formControlName="username"   class="form-control"  type="text">
+        <small class="text-danger" *ngIf="reactiveRegisterForm.get('username')?.invalid && reactiveRegisterForm.get('username')?.touched"> username is wrong </small>
+    </div>
+        <div class="form-group" >
+            <label> Email</label>
+            <input  [class.is-invalid]="reactiveRegisterForm.get('email')?.invalid && reactiveRegisterForm.get('email')?.touched" formControlName="email"   class="form-control"  type="email">
+            <small class="text-danger" *ngIf="reactiveRegisterForm.get('email')?.invalid && reactiveRegisterForm.get('email')?.touched"> Email is wrong </small>
+        </div>
+
+        <div class="form-group" >
+            <label> Password</label>
+            <input formControlName="password" class="form-control"  type="password">
+            <small class="text-danger" *ngIf="reactiveRegisterForm.get('password')?.invalid && reactiveRegisterForm.get('password')?.touched">Password is invalid</small>
+        </div>
+
+        <div class="form-group" >
+            <label>Confirm Password</label>
+            <input formControlName="confirmpassword" class="form-control"  type="password">
+            <small class="text-danger" *ngIf="reactiveRegisterForm.errors?.['mismatch']">Password must be match</small>
+                
+             </div>
+        <input type="submit" (click)="loadData()"  value="Login" class="btn btn-info" >
+
+    </form>
+</div>

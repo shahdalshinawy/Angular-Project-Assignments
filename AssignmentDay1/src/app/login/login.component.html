@@ -1,0 +1,19 @@
+<div class="container">
+    <form novalidate #loginForm="ngForm" (ngSubmit)="submitDataLogin()">
+       
+        <div class="form-group" >
+            <label> Email</label>
+            <input class="form-control" [class.is-invalid]="email.invalid&&email.touched" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" [(ngModel)]="userModel.email" name="emailtxt" ngModel required type="email">
+            <small class="text-danger" *ngIf="email.invalid&&email.touched"> Email is wrong </small>
+        </div>
+
+        <div class="form-group" >
+            <label> Password</label>
+            <input class="form-control" [class.is-invalid]="password.invalid&&password.touched" #password="ngModel" name="passtxt" [(ngModel)]="userModel.password" ngModel required type="password">
+            <small class="text-danger" *ngIf="password.invalid&&password.touched"> password is required</small>
+        </div>
+
+        <input type="submit" [style.background-color]="loginForm.invalid ? 'red' : 'green'"  value="Login" class="btn btn-info" >
+
+    </form>
+</div>
